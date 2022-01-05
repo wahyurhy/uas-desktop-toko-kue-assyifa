@@ -36,7 +36,7 @@ public class MenuUtamaView extends javax.swing.JFrame {
         setSize(40, 40);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ImageIcon imgUserIc = new ImageIcon(getClass().getResource("/com/assyifacake/resources/img/ic_user.png"));
+        ImageIcon imgUserIc = new ImageIcon("src/main/java/com/assyifacake/resources/img/ic_user.png");
         
         userIc = new JLabel("", imgUserIc, JLabel.CENTER);
         userIc.setBounds(700,10,40,40);
@@ -130,9 +130,9 @@ public class MenuUtamaView extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
