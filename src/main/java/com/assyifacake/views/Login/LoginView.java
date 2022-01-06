@@ -21,23 +21,23 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         initComponents();
         
-        // logo image
-        JLabel logo;
-        setSize(125, 125);
-        setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ImageIcon imgLogo = new ImageIcon("src/main/java/com/assyifacake/resources/img/logo_homemade.png");
-        
-        logo = new JLabel("", imgLogo, JLabel.CENTER);
-        logo.setBounds(318,30,125,125);
-        add(logo);
+//        // logo image
+//        JLabel logo;
+//        setSize(125, 125);
+//        setLayout(null);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        ImageIcon imgLogo = new ImageIcon("src/main/java/com/assyifacake/resources/img/logo_homemade.png");
+//        
+//        logo = new JLabel("", imgLogo, JLabel.CENTER);
+//        logo.setBounds(318,30,125,125);
+//        add(logo);
         
         // bg image
         JLabel background;
         setSize(770, 540);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon("src/main/java/com/assyifacake/resources/img/bg_login.png");
+        ImageIcon img = new ImageIcon(getClass().getResource("/img/bg_login.png"));
         
         background = new JLabel("", img, JLabel.CENTER);
         background.setBounds(0,0,770,540);
@@ -59,6 +59,7 @@ public class LoginView extends javax.swing.JFrame {
         usernameTF = new javax.swing.JTextField();
         passTF = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -142,19 +143,29 @@ public class LoginView extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo_homemade.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(323, 323, 323)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(230, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(37, 37, 37)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104))
         );
@@ -240,6 +251,7 @@ public class LoginView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField passTF;
     private javax.swing.JTextField usernameTF;

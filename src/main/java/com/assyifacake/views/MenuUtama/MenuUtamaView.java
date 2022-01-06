@@ -5,10 +5,19 @@
 package com.assyifacake.views.MenuUtama;
 
 import com.assyifacake.views.Login.*;
+import com.assyifacake.views.Produk.AturProdukInternalView;
+import com.assyifacake.views.Produk.DetailProdukInternalView;
 import com.assyifacake.views.Produk.LihatProdukInternalView;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
@@ -20,39 +29,68 @@ public class MenuUtamaView extends javax.swing.JFrame {
     /**
      * Creates new form LoginView
      */
+    private final JPopupMenu popupProduk = new JPopupMenu();
+    private final JPopupMenu popupResep = new JPopupMenu();
+    private final JPopupMenu popupTransaksi = new JPopupMenu();
+    private final JPopupMenu popupUser = new JPopupMenu();
+    private JMenuItem menuItem = null;
     
     public MenuUtamaView() {
         initComponents();
-        LihatProdukInternalView civ = new LihatProdukInternalView();
-        panel.add(civ); 
+        
+
+//        LihatProdukInternalView civ = new LihatProdukInternalView();
+//        panel.add(civ); 
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = civ.getSize();
+//        civ.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        civ.setVisible(true);
+        
+//        AturProdukInternalView apiv = new AturProdukInternalView();
+//        panel.add(apiv);
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = apiv.getSize();
+//        apiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        apiv.setVisible(true);
+        
+        DetailProdukInternalView dpiv = new DetailProdukInternalView();
+        panel.add(dpiv);
         Dimension desktopSize = panel.getSize();
-        Dimension jInternalFrameSize = civ.getSize();
-        civ.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+        Dimension jInternalFrameSize = dpiv.getSize();
+        dpiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
         (desktopSize.height- jInternalFrameSize.height)/2);
-        civ.setVisible(true);
+        dpiv.setVisible(true);
         
-        // user image
-        JLabel userIc;
-        setSize(40, 40);
-        setLayout(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ImageIcon imgUserIc = new ImageIcon("src/main/java/com/assyifacake/resources/img/ic_user.png");
-        
-        userIc = new JLabel("", imgUserIc, JLabel.CENTER);
-        userIc.setBounds(700,10,40,40);
-        add(userIc);
+//        // user image
+//        JLabel userIc;
+//        setSize(40, 40);
+//        setLayout(null);
+//        setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        ImageIcon imgUserIc = new ImageIcon("src/main/java/com/assyifacake/resources/img/ic_user.png");
+//        
+//        userIc = new JLabel("", imgUserIc, JLabel.CENTER);
+//        userIc.setBounds(700,10,40,40);
+//        add(userIc);
         
         // bg image
         JLabel background;
         setSize(770, 540);
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon("src/main/java/com/assyifacake/resources/img/bg_dark.png");
+        ImageIcon img = new ImageIcon(getClass().getResource("/img/bg_dark.png"));
         
         background = new JLabel("", img, JLabel.CENTER);
         background.setBounds(0,0,770,540);
         add(background);
         setVisible(true);
+        
+        // Call Our Method
+        createPopupProduk(this);
+        createPopupResep(this);
+        createPopupTransaksi(this);
+        createPopupUser(this);
         
         
     }
@@ -67,11 +105,12 @@ public class MenuUtamaView extends javax.swing.JFrame {
     private void initComponents() {
 
         panel = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        produkNavTF = new javax.swing.JLabel();
+        resepNavTF = new javax.swing.JLabel();
+        transaksiNavTF = new javax.swing.JLabel();
+        daftarPembeliNavTF = new javax.swing.JLabel();
         usernameTF = new javax.swing.JLabel();
+        icUserLB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -89,30 +128,64 @@ public class MenuUtamaView extends javax.swing.JFrame {
             .addGap(0, 480, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Produk");
+        produkNavTF.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        produkNavTF.setForeground(new java.awt.Color(255, 255, 255));
+        produkNavTF.setText("Produk");
+        produkNavTF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        produkNavTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                produkNavTFMouseClicked(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Resep");
+        resepNavTF.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        resepNavTF.setForeground(new java.awt.Color(255, 255, 255));
+        resepNavTF.setText("Resep");
+        resepNavTF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        resepNavTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resepNavTFMouseClicked(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Transaksi");
+        transaksiNavTF.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        transaksiNavTF.setForeground(new java.awt.Color(255, 255, 255));
+        transaksiNavTF.setText("Transaksi");
+        transaksiNavTF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        transaksiNavTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                transaksiNavTFMouseClicked(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Daftar Pembeli");
+        daftarPembeliNavTF.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        daftarPembeliNavTF.setForeground(new java.awt.Color(255, 255, 255));
+        daftarPembeliNavTF.setText("Daftar Pembeli");
+        daftarPembeliNavTF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        daftarPembeliNavTF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                daftarPembeliNavTFMouseClicked(evt);
+            }
+        });
 
         usernameTF.setFont(new java.awt.Font("Montserrat", 1, 14)); // NOI18N
         usernameTF.setForeground(new java.awt.Color(255, 255, 255));
         usernameTF.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         usernameTF.setText("Username");
+        usernameTF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         usernameTF.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         usernameTF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 usernameTFMouseClicked(evt);
+            }
+        });
+
+        icUserLB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ic_user.png"))); // NOI18N
+        icUserLB.setText("jLabel5");
+        icUserLB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icUserLB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icUserLBMouseClicked(evt);
             }
         });
 
@@ -123,28 +196,31 @@ public class MenuUtamaView extends javax.swing.JFrame {
             .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jLabel1)
+                .addComponent(produkNavTF)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2)
+                .addComponent(resepNavTF)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel3)
+                .addComponent(transaksiNavTF)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addComponent(daftarPembeliNavTF)
+                .addGap(18, 18, 18)
+                .addComponent(usernameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icUserLB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(usernameTF))
-                .addGap(20, 20, 20)
+                    .addComponent(produkNavTF)
+                    .addComponent(resepNavTF)
+                    .addComponent(transaksiNavTF)
+                    .addComponent(daftarPembeliNavTF)
+                    .addComponent(usernameTF)
+                    .addComponent(icUserLB))
+                .addGap(9, 9, 9)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -153,8 +229,38 @@ public class MenuUtamaView extends javax.swing.JFrame {
 
     private void usernameTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameTFMouseClicked
         // TODO add your handling code here:
-        usernameTF.setText("Wahyu Rahayu");
+        // Show Popup Menu
+        popupUser.show(this, 600, 80);
     }//GEN-LAST:event_usernameTFMouseClicked
+
+    private void icUserLBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icUserLBMouseClicked
+        // TODO add your handling code here:
+        // Show Popup Menu
+        popupUser.show(this, 600, 80);
+    }//GEN-LAST:event_icUserLBMouseClicked
+
+    private void produkNavTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produkNavTFMouseClicked
+        // TODO add your handling code here:
+        // Show Popup Menu
+        popupProduk.show(this, 30, 80);
+    }//GEN-LAST:event_produkNavTFMouseClicked
+
+    private void resepNavTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resepNavTFMouseClicked
+        // TODO add your handling code here:
+        // Show Popup Menu
+        popupResep.show(this, 130, 80);
+    }//GEN-LAST:event_resepNavTFMouseClicked
+
+    private void transaksiNavTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transaksiNavTFMouseClicked
+        // TODO add your handling code here:
+        // Show Popup Menu
+        popupTransaksi.show(this, 230, 80);
+    }//GEN-LAST:event_transaksiNavTFMouseClicked
+
+    private void daftarPembeliNavTFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daftarPembeliNavTFMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+    }//GEN-LAST:event_daftarPembeliNavTFMouseClicked
 
     /**
      * @param args the command line arguments
@@ -192,13 +298,206 @@ public class MenuUtamaView extends javax.swing.JFrame {
 //        });
         new MenuUtamaView().setVisible(true);
     }
+    
+    // =================================================Menu Popup Produk ========================================================
+    
+    // Create Menu Method
+    private void createPopupProduk(JFrame frame) {
+        // Create File Menu
+        menuItem = new JMenuItem(
+                "Lihat Produk",
+                new ImageIcon(getClass().getResource("/img/ic_view.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Lihat Produk");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+                JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+                
+            }
+        });
+        // Add Menu Item Into Popup Menu
+        popupProduk.add(menuItem);
+
+        // Add another menu item to popup menu
+        menuItem = new JMenuItem(
+                "Atur Produk",
+                new ImageIcon(getClass().getResource("/img/ic_settings.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Atur Produk");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                    
+                    JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+            
+                }
+            }
+
+            );
+        // Add Menu Item Into Popup Menu
+            popupProduk.add (menuItem);
+            
+        }
+    
+    // =================================================Menu Popup Resep ========================================================
+    
+    // Create Menu Method
+    private void createPopupResep(JFrame frame) {
+        // Create File Menu
+        menuItem = new JMenuItem(
+                "Lihat Resep",
+                new ImageIcon(getClass().getResource("/img/ic_view.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Lihat Resep");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+                JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+                
+            }
+        });
+        // Add Menu Item Into Popup Menu
+        popupResep.add(menuItem);
+
+        // Add another menu item to popup menu
+        menuItem = new JMenuItem(
+                "Atur Resep",
+                new ImageIcon(getClass().getResource("/img/ic_settings.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Atur Resep");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                    
+                    JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+            
+                }
+            }
+
+            );
+        // Add Menu Item Into Popup Menu
+            popupResep.add (menuItem);
+            
+        }
+    
+    // =================================================Menu Popup Transaksi ========================================================
+    
+    // Create Menu Method
+    private void createPopupTransaksi(JFrame frame) {
+        // Create File Menu
+        menuItem = new JMenuItem(
+                "Lihat Transaksi",
+                new ImageIcon(getClass().getResource("/img/ic_view.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Lihat Transaksi");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+                JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+                
+            }
+        });
+        // Add Menu Item Into Popup Menu
+        popupTransaksi.add(menuItem);
+
+        // Add another menu item to popup menu
+        menuItem = new JMenuItem(
+                "Buat Transaksi",
+                new ImageIcon(getClass().getResource("/img/ic_plus.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Buat Transaksi");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                    
+                    JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+            
+                }
+            }
+
+            );
+        // Add Menu Item Into Popup Menu
+            popupTransaksi.add (menuItem);
+            
+        // Add another menu item to popup menu
+        menuItem = new JMenuItem(
+                "Laporan Penjualan",
+                new ImageIcon(getClass().getResource("/img/ic_statistic.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Laporan Penjualan");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                    
+                    JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+            
+                }
+            }
+
+            );
+        // Add Menu Item Into Popup Menu
+            popupTransaksi.add (menuItem);
+            
+        }
+    
+    // =================================================Menu Popup User ========================================================
+    
+    // Create Menu Method
+    private void createPopupUser(JFrame frame) {
+        // Create File Menu
+        menuItem = new JMenuItem(
+                "Atur Akun",
+                new ImageIcon(getClass().getResource("/img/ic_settings.png")
+        ));
+        // Apply Desc
+        menuItem.getAccessibleContext().setAccessibleDescription("Atur Akun");
+        menuItem.setFont(new Font("Montserrat", Font.PLAIN, 18));
+        // Create an Action Listener
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+                JOptionPane.showMessageDialog(null, "Pindah Panel belum di coding");
+                
+            }
+        });
+        // Add Menu Item Into Popup Menu
+        popupUser.add(menuItem);
+            
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel daftarPembeliNavTF;
+    private javax.swing.JLabel icUserLB;
     private javax.swing.JDesktopPane panel;
+    private javax.swing.JLabel produkNavTF;
+    private javax.swing.JLabel resepNavTF;
+    private javax.swing.JLabel transaksiNavTF;
     private javax.swing.JLabel usernameTF;
     // End of variables declaration//GEN-END:variables
 }
