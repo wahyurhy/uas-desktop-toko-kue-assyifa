@@ -39,13 +39,13 @@ public class MenuUtamaView extends javax.swing.JFrame {
         initComponents();
         
 
-//        LihatProdukInternalView civ = new LihatProdukInternalView();
-//        panel.add(civ); 
-//        Dimension desktopSize = panel.getSize();
-//        Dimension jInternalFrameSize = civ.getSize();
-//        civ.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
-//        (desktopSize.height- jInternalFrameSize.height)/2);
-//        civ.setVisible(true);
+        LihatProdukInternalView civ = new LihatProdukInternalView();
+        panel.add(civ); 
+        Dimension desktopSize = panel.getSize();
+        Dimension jInternalFrameSize = civ.getSize();
+        civ.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+        (desktopSize.height- jInternalFrameSize.height)/2);
+        civ.setVisible(true);
         
 //        AturProdukInternalView apiv = new AturProdukInternalView();
 //        panel.add(apiv);
@@ -55,13 +55,13 @@ public class MenuUtamaView extends javax.swing.JFrame {
 //        (desktopSize.height- jInternalFrameSize.height)/2);
 //        apiv.setVisible(true);
         
-        DetailProdukInternalView dpiv = new DetailProdukInternalView();
-        panel.add(dpiv);
-        Dimension desktopSize = panel.getSize();
-        Dimension jInternalFrameSize = dpiv.getSize();
-        dpiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
-        (desktopSize.height- jInternalFrameSize.height)/2);
-        dpiv.setVisible(true);
+//        DetailProdukInternalView dpiv = new DetailProdukInternalView();
+//        panel.add(dpiv);
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = dpiv.getSize();
+//        dpiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        dpiv.setVisible(true);
         
 //        // user image
 //        JLabel userIc;
