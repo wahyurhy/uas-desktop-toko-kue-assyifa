@@ -6,8 +6,14 @@ package com.assyifacake.views.MenuUtama;
 
 import com.assyifacake.views.Login.*;
 import com.assyifacake.views.Produk.AturProdukInternalView;
+import com.assyifacake.views.Produk.DaftarPembeliInternalView;
 import com.assyifacake.views.Produk.DetailProdukInternalView;
 import com.assyifacake.views.Produk.LihatProdukInternalView;
+import com.assyifacake.views.Resep.LihatResepInternalView;
+import com.assyifacake.views.Resep.DetailResepInternalView;
+import com.assyifacake.views.Resep.AturResepInternalView;
+import com.assyifacake.views.Transaksi.DetailTransaksiInternalView;
+import com.assyifacake.views.Transaksi.LihatTransaksiInternalView;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -38,14 +44,14 @@ public class MenuUtamaView extends javax.swing.JFrame {
     public MenuUtamaView() {
         initComponents();
         
-
-        LihatProdukInternalView civ = new LihatProdukInternalView();
-        panel.add(civ); 
-        Dimension desktopSize = panel.getSize();
-        Dimension jInternalFrameSize = civ.getSize();
-        civ.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
-        (desktopSize.height- jInternalFrameSize.height)/2);
-        civ.setVisible(true);
+//        Produk
+//        LihatProdukInternalView lpiv = new LihatProdukInternalView();
+//        panel.add(lpiv); 
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = lpiv.getSize();
+//        lpiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        lpiv.setVisible(true);
         
 //        AturProdukInternalView apiv = new AturProdukInternalView();
 //        panel.add(apiv);
@@ -62,7 +68,65 @@ public class MenuUtamaView extends javax.swing.JFrame {
 //        dpiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
 //        (desktopSize.height- jInternalFrameSize.height)/2);
 //        dpiv.setVisible(true);
+
+//        Resep
+//          LihatResepInternalView lriv = new LihatResepInternalView();
+//          panel.add(lriv); 
+//          Dimension desktopSize = panel.getSize();
+//          Dimension jInternalFrameSize = lriv.getSize();
+//          lriv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//          (desktopSize.height- jInternalFrameSize.height)/2);
+//          lriv.setVisible(true);
         
+//        AturResepInternalView ariv = new AturResepInternalView();
+//        panel.add(ariv);
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = ariv.getSize();
+//        ariv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        ariv.setVisible(true);
+        
+//        DetailResepInternalView driv = new DetailResepInternalView();
+//        panel.add(driv);
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = driv.getSize();
+//        driv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        driv.setVisible(true);
+
+//        Transaksi
+//        LihatTransaksiInternalView ltiv = new LihatTransaksiInternalView();
+//        panel.add(ltiv); 
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = ltiv.getSize();
+//        ltiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        ltiv.setVisible(true);
+        
+//        AturTransaksiInternalView ativ = new AturTransaksiInternalView();
+//        panel.add(ativ);
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = ativ.getSize();
+//        ativ.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        ativ.setVisible(true);
+        
+//        DetailTransaksiInternalView dtiv = new DetailTransaksiInternalView();
+//        panel.add(dtiv);
+//        Dimension desktopSize = panel.getSize();
+//        Dimension jInternalFrameSize = dtiv.getSize();
+//        dtiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+//        (desktopSize.height- jInternalFrameSize.height)/2);
+//        dtiv.setVisible(true);
+
+        DaftarPembeliInternalView dpiv = new DaftarPembeliInternalView();
+        panel.add(dpiv); 
+        Dimension desktopSize = panel.getSize();
+        Dimension jInternalFrameSize = dpiv.getSize();
+        dpiv.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+        (desktopSize.height- jInternalFrameSize.height)/2);
+        dpiv.setVisible(true);
+
 //        // user image
 //        JLabel userIc;
 //        setSize(40, 40);
